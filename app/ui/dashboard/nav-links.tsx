@@ -1,22 +1,18 @@
 'use client';
 
-import {
-  UserGroupIcon,
-  HomeIcon,
-  DocumentDuplicateIcon,
-} from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
-const links = [
-  { name: 'Home', href: '/dashboard', icon: HomeIcon },
-  {
-    name: 'Invoices',
-    href: '/dashboard/invoices',
-    icon: DocumentDuplicateIcon,
-  },
-  { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
+interface LinkItem {
+  name: string;
+  href: string;
+}
+
+const links: LinkItem[] = [
+  { name: 'Home', href: '/dashboard' },
+  { name: 'Invoices', href: '/dashboard/invoices' },
+  { name: 'Customers', href: '/dashboard/customers' },
 ];
 
 export default function NavLinks() {
@@ -25,7 +21,6 @@ export default function NavLinks() {
   return (
     <>
       {links.map((link) => {
-        const LinkIcon = link.icon;
         return (
           <Link
             key={link.name}
@@ -37,7 +32,6 @@ export default function NavLinks() {
               },
             )}
           >
-            <LinkIcon className="w-6" />
             <p className="hidden md:block">{link.name}</p>
           </Link>
         );
